@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gamified Task Master</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="login-screen" class="screen">
+    <div class="auth-box">
+      <h1>Welcome Back</h1>
+      <input type="email" id="login-email" placeholder="Email Address (Not Username)">
+      <input type="password" id="login-password" placeholder="Password">
+      <button id="login-submit-btn" class="primary-btn">Log In</button>
+      <p class="auth-switch">New to the realm? <span id="go-to-register">Create an account</span></p>
+      <p id="login-error" class="error-text"></p>
+    </div>
+  </div>
+
+  <div id="register-screen" class="screen hidden">
+    <div class="auth-box">
+      <h1>Join the Quest</h1>
+      <input type="email" id="reg-email" placeholder="Email Address">
+      <input type="text" id="reg-username" placeholder="Hero Name (Username)">
+      <input type="password" id="reg-password" placeholder="Password (Min 8 chars, 1 Cap, 1 Num, 1 Spec)">
+      <input type="password" id="reg-confirm" placeholder="Confirm Password">
+      <button id="register-submit-btn" class="primary-btn">Sign Up</button>
+      <p class="auth-switch">Already a hero? <span id="go-to-login">Log In</span></p>
+      <p id="register-error" class="error-text"></p>
+    </div>
+  </div>
+
+  <div id="dashboard-screen" class="screen hidden">
+    
+    <header class="game-header">
+      <div class="player-profile">
+        <div class="avatar-slot">
+          <img src="https://via.placeholder.com/150/aaaaaa/ffffff?text=Novice" alt="Current Avatar" id="current-avatar">
+        </div>
+        <div class="player-info">
+          <h2><span id="user-display-name">Hero</span> <span class="level-badge">Lvl <span id="level-display">1</span></span></h2>
+          <div class="xp-container">
+            <span class="xp-star">⭐</span>
+            <div class="xp-bar-bg">
+              <div class="xp-bar-fill" id="xp-bar-fill" style="width: 0%;"></div>
+            </div>
+            <span class="xp-text"><span id="current-xp">0</span> / <span id="max-xp">50</span></span>
+          </div>
+        </div>
+      </div>
+      
+      <nav class="main-nav">
+        <button class="nav-btn active" data-target="home-view">Home</button>
+        <button class="nav-btn" data-target="shop-view">Shop</button>
+        <button class="nav-btn" data-target="leaderboard-view">Leaderboard</button>
+      </nav>
+
+      <div class="header-actions">
+        <span class="currency gem-currency">💎 <span id="gem-display">0</span></span>
+        <span class="currency gold-currency">🪙 <span id="gold-display">0</span></span>
+        <button id="logout-btn" class="secondary-btn">Logout</button>
+      </div>
+    </header>
+
+    <main id="home-view" class="app-view active dashboard-grid">
+      
+      <section class="task-column">
+        <div class="column-header"><h3>Habits</h3></div>
+        <div class="task-input-wrapper">
+          <input type="text" id="new-habit-input" placeholder="Add a Habit...">
+          <button id="add-habit-btn" class="primary-btn">+</button>
+        </div>
+        <div class="task-list" id="habits-list">
+          <div class="task-card habit-card">
+            <button class="action-btn plus-btn test-xp-btn">+</button>
+            <div class="task-content">10 mins of cardio</div>
+            <button class="action-btn minus-btn">-</button>
+          </div>
+          <div class="task-card habit-card">
+            <button class="action-btn plus-btn test-xp-btn">+</button>
+            <div class="task-content">10 mins of reading book</div>
+            <button class="action-btn minus-btn">-</button>
+          </div>
+          <div class="task-card habit-card">
+            <button class="action-btn plus-btn test-xp-btn">+</button>
+            <div class="task-content">10 mins of meditation</div>
+            <button class="action-btn minus-btn">-</button>
+          </div>
+          <div class="task-card habit-card">
+            <button class="action-btn plus-btn test-xp-btn">+</button>
+            <div class="task-content">1 hour of Sleep</div>
+            <button class="action-btn minus-btn">-</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="task-column">
+        <div class="column-header"><h3>Dailies</h3></div>
+        <div class="task-input-wrapper">
+          <input type="text" id="new-daily-input" placeholder="Add a Daily...">
+          <button id="add-daily-btn" class="primary-btn">+</button>
+        </div>
+        <div class="task-list" id="dailies-list">
+          <div class="task-card">
+            <input type="checkbox" class="task-checkbox test-xp-checkbox">
+            <div class="task-content">Wash dishes</div>
+          </div>
+          <div class="task-card">
+            <input type="checkbox" class="task-checkbox test-xp-checkbox">
+            <div class="task-content">Clothes laundry</div>
+          </div>
+          <div class="task-card">
+            <input type="checkbox" class="task-checkbox test-xp-checkbox">
+            <div class="task-content">5 mins of breathing</div>
+          </div>
+          <div class="task-card">
+            <input type="checkbox" class="task-checkbox test-xp-checkbox">
+            <div class="task-content">Working on project for 2 hours</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="task-column">
+        <div class="column-header"><h3>To Do's</h3></div>
+        <div class="task-input-wrapper">
+          <input type="text" id="new-todo-input" placeholder="Add a To Do...">
+          <button id="add-todo-btn" class="primary-btn">+</button>
+        </div>
+        <div class="task-list" id="todos-list">
+          </div>
+      </section>
+
+      <section class="task-column">
+        <div class="column-header"><h3>Instant Rewards</h3></div>
+        <div class="task-input-wrapper">
+          <input type="text" id="new-reward-input" placeholder="Custom Reward...">
+          <button id="add-reward-btn" class="primary-btn">+</button>
+        </div>
+        <div class="task-list" id="rewards-list">
+          <div class="task-card reward-card">
+            <div class="task-content">1 hour of series/movie</div>
+            <button class="buy-btn gold-buy-btn" data-cost="20" data-currency="gold" data-name="1 hr series" data-req="1">🪙 20</button>
+          </div>
+          <div class="task-card reward-card">
+            <div class="task-content">Treat yourself with favourite food</div>
+            <button class="buy-btn gold-buy-btn" data-cost="50" data-currency="gold" data-name="Favourite Food" data-req="1">🪙 50</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main id="shop-view" class="app-view">
+      <div class="shop-header">
+        <h2>Avatar Shop</h2>
+        <p>Unlock new heroes with your hard-earned Gems. Higher tier avatars require higher levels!</p>
+      </div>
+      
+      <div class="avatar-grid">
+        <div class="avatar-card">
+          <div class="avatar-img-wrapper"><img src="WhatsApp Image 2026-02-26 at 6.53.54 PM (1).jpeg" alt="Novice"></div>
+          <h3>Novice</h3>
+          <p class="req-text">Default</p>
+          <button class="buy-btn avatar-btn" data-id="novice" data-cost="0" data-currency="free" data-name="Novice Avatar" data-req="1" data-src="WhatsApp Image 2026-02-26 at 6.53.54 PM (1).jpeg">Equipped</button>
+        </div>
+        <div class="avatar-card">
+          <div class="avatar-img-wrapper"><img src="WhatsApp Image 2026-02-26 at 6.53.54 PM.jpeg" alt="Squire"></div>
+          <h3>Squire</h3>
+          <p class="req-text">Requires Lvl 5</p>
+          <button class="buy-btn gem-buy-btn avatar-btn" data-id="squire" data-cost="2" data-currency="gem" data-name="Squire Avatar" data-req="5" data-src="WhatsApp Image 2026-02-26 at 6.53.54 PM.jpeg">💎 2</button>
+        </div>
+        <div class="avatar-card">
+          <div class="avatar-img-wrapper"><img src="WhatsApp Image 2026-02-26 at 6.53.55 PM (1).jpeg" alt="Knight"></div>
+          <h3>Knight</h3>
+          <p class="req-text">Requires Lvl 10</p>
+          <button class="buy-btn gem-buy-btn avatar-btn" data-id="knight" data-cost="5" data-currency="gem" data-name="Knight Avatar" data-req="10" data-src="WhatsApp Image 2026-02-26 at 6.53.55 PM (1).jpeg">💎 5</button>
+        </div>
+        <div class="avatar-card">
+          <div class="avatar-img-wrapper"><img src="WhatsApp Image 2026-02-26 at 6.53.55 PM (2).jpeg" alt="Mage"></div>
+          <h3>Mage</h3>
+          <p class="req-text">Requires Lvl 15</p>
+          <button class="buy-btn gem-buy-btn avatar-btn" data-id="mage" data-cost="10" data-currency="gem" data-name="Mage Avatar" data-req="15" data-src="WhatsApp Image 2026-02-26 at 6.53.55 PM (2).jpeg">💎 10</button>
+        </div>
+        <div class="avatar-card">
+          <div class="avatar-img-wrapper"><img src="WhatsApp Image 2026-02-26 at 6.53.55 PM.jpeg" alt="King"></div>
+          <h3>King</h3>
+          <p class="req-text">Requires Lvl 25</p>
+          <button class="buy-btn gem-buy-btn avatar-btn" data-id="king" data-cost="20" data-currency="gem" data-name="King Avatar" data-req="25" data-src="WhatsApp Image 2026-02-26 at 6.53.55 PM.jpeg">💎 20</button>
+        </div>
+      </div>
+    </main>
+
+    <main id="leaderboard-view" class="app-view">
+      <div class="coming-soon-container">
+        <span class="huge-icon">🏆</span>
+        <h2>Global Leaderboard</h2>
+        <p>Coming Soon!</p>
+        <p class="sub-text">Keep grinding those levels. The battle for Rank #1 begins shortly.</p>
+      </div>
+    </main>
+
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

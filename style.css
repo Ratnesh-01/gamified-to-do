@@ -1,0 +1,180 @@
+:root {
+  --bg-dark-purple: #34245c;
+  --bg-darker-purple: #251846;
+  --bg-bar-dark: #1e1438;
+  --accent-orange: #f9b24e;
+  --accent-blue: #40e0d0;
+  --bg-board: #f4f4f4;
+  --col-bg: #e2e2e2;
+  --card-bg: #ffffff;
+  --text-dark: #333333;
+  --text-light: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-board);
+  color: var(--text-dark);
+}
+
+.screen { min-height: 100vh; }
+#login-screen, #register-screen {
+  display: flex; justify-content: center; align-items: center; background-color: var(--bg-dark-purple);
+  padding: 20px; 
+}
+#dashboard-screen { display: flex; flex-direction: column; height: 100vh; }
+.hidden { display: none !important; }
+
+/* AUTHENTICATION */
+.auth-box {
+  background-color: var(--text-light); padding: 40px; border-radius: 12px; width: 100%; max-width: 380px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; box-sizing: border-box;
+}
+.auth-box h1 { color: var(--bg-dark-purple); margin-top: 0; }
+.auth-box input {
+  width: 100%; padding: 12px; margin-bottom: 15px; box-sizing: border-box; border: 1px solid #ccc;
+  border-radius: 6px; font-size: 1rem;
+}
+.auth-switch { margin-top: 20px; font-size: 0.9rem; color: #666; }
+.auth-switch span { color: var(--bg-dark-purple); font-weight: bold; cursor: pointer; text-decoration: underline; }
+.auth-switch span:hover { color: var(--accent-orange); }
+.error-text { color: #ff4a4a; font-size: 0.9rem; margin-top: 10px; min-height: 20px; }
+
+/* BUTTONS */
+button {
+  cursor: pointer; padding: 12px; border: none; border-radius: 6px; font-weight: bold; font-size: 1rem;
+  width: 100%; transition: all 0.2s; box-sizing: border-box;
+}
+button:hover { opacity: 0.9; }
+button:active { transform: scale(0.98); }
+button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.primary-btn { background-color: var(--accent-orange); color: var(--bg-darker-purple); }
+.secondary-btn { background-color: var(--bg-darker-purple); color: var(--text-light); width: auto; padding: 10px 20px; }
+
+/* HEADER & NAVIGATION */
+.game-header {
+  background-color: var(--bg-dark-purple); color: var(--text-light); padding: 15px 30px; 
+  display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--accent-orange);
+  gap: 15px; 
+}
+
+.player-profile { display: flex; align-items: center; gap: 15px; flex: 1; min-width: 250px; }
+.avatar-slot img { width: 60px; height: auto; aspect-ratio: 1 / 1; border-radius: 8px; border: 2px solid var(--accent-orange); object-fit: cover; }
+.player-info h2 { margin: 0; font-size: 1.2rem; color: var(--text-light); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.level-badge { font-size: 0.8rem; background-color: var(--bg-darker-purple); padding: 4px 8px; border-radius: 4px; color: var(--accent-orange); }
+
+.xp-container { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.xp-star { font-size: 1rem; }
+.xp-bar-bg { width: 150px; height: 10px; background-color: var(--bg-bar-dark); border-radius: 4px; overflow: hidden; }
+.xp-bar-fill { height: 100%; background-color: var(--accent-orange); transition: width 0.4s ease; }
+.xp-text { font-size: 0.8rem; color: #b0a3d4; font-weight: bold; }
+
+.main-nav { display: flex; gap: 10px; flex: 1; justify-content: center; flex-wrap: wrap; }
+.nav-btn { background: none; border: 2px solid transparent; color: var(--text-muted, #b0a3d4); width: auto; padding: 8px 16px; border-radius: 20px; }
+.nav-btn:hover { color: var(--text-light); background-color: rgba(255,255,255,0.1); }
+.nav-btn.active { color: var(--bg-dark-purple); background-color: var(--accent-orange); }
+
+.header-actions { display: flex; align-items: center; gap: 20px; flex: 1; justify-content: flex-end; flex-wrap: wrap; }
+.currency { font-weight: bold; font-size: 1.1rem; white-space: nowrap; }
+.gold-currency { color: var(--accent-orange); }
+.gem-currency { color: var(--accent-blue); }
+
+/* VIEW MANAGEMENT */
+.app-view { display: none; padding: 30px; max-width: 1600px; margin: 0 auto; width: 100%; box-sizing: border-box; flex-grow: 1; overflow-y: auto; overflow-x: hidden; }
+#home-view.active { display: grid; }
+#shop-view.active, #leaderboard-view.active { display: block; }
+
+/* HOME GRID */
+.dashboard-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.task-column { background-color: var(--col-bg); border-radius: 8px; display: flex; flex-direction: column; min-height: 400px; }
+.column-header { padding: 15px; border-bottom: 2px solid #ccc; }
+.column-header h3 { margin: 0; color: var(--bg-dark-purple); }
+
+.task-input-wrapper { padding: 10px; display: flex; gap: 8px; }
+.task-input-wrapper input { flex-grow: 1; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; width: 100%; }
+.task-input-wrapper button { width: auto; padding: 10px 15px; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+
+.task-list { padding: 15px; flex-grow: 1; overflow-y: auto; }
+
+.task-card {
+  background-color: var(--card-bg); padding: 12px; border-radius: 6px; margin-bottom: 10px; display: flex;
+  align-items: center; gap: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 4px solid var(--accent-orange);
+  transition: opacity 0.3s, text-decoration 0.3s;
+}
+.habit-card { padding: 0; border-left: none; }
+.habit-card .task-content { padding: 12px; flex-grow: 1; word-break: break-word; }
+.action-btn { background-color: var(--accent-orange); color: var(--bg-dark-purple); padding: 0 15px; height: 100%; min-height: 44px; width: auto; }
+.plus-btn { border-radius: 6px 0 0 6px; }
+.minus-btn { border-radius: 0 6px 6px 0; background-color: #ffce85; }
+.task-checkbox { width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent-orange); flex-shrink: 0; }
+.task-checkbox:disabled { cursor: not-allowed; opacity: 0.6; }
+.reward-card { justify-content: space-between; flex-wrap: wrap; }
+
+/* SHOP VIEW */
+.shop-header { text-align: center; margin-bottom: 40px; }
+.shop-header h2 { color: var(--bg-dark-purple); font-size: 2rem; margin-bottom: 10px; }
+.shop-header p { color: #666; font-size: 1.1rem; }
+.avatar-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+.avatar-card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; text-align: center; width: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-top: 6px solid var(--accent-blue); }
+.avatar-img-wrapper img { width: 100%; max-width: 120px; height: auto; aspect-ratio: 1 / 1; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border: 3px solid var(--bg-dark-purple); object-fit: cover; }
+.avatar-card h3 { margin: 0 0 5px 0; color: var(--bg-dark-purple); }
+.req-text { font-size: 0.9rem; color: #888; margin-bottom: 15px; font-weight: bold; }
+
+/* LEADERBOARD VIEW */
+.coming-soon-container { text-align: center; padding: 100px 20px; }
+.huge-icon { font-size: 5rem; display: block; margin-bottom: 20px; }
+.coming-soon-container h2 { color: var(--bg-dark-purple); font-size: 2.5rem; margin-bottom: 10px; }
+.coming-soon-container p { font-size: 1.2rem; color: #555; }
+.sub-text { font-style: italic; color: #888; }
+
+/* STORE BUTTONS */
+.buy-btn { border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; width: auto; }
+.equip-btn { background-color: #ccc; color: #666; }
+.equip-action-btn { background-color: var(--accent-orange); color: var(--bg-dark-purple); }
+.gold-buy-btn { background-color: var(--bg-dark-purple); color: var(--accent-orange); }
+.gem-buy-btn { background-color: var(--bg-dark-purple); color: var(--accent-blue); }
+
+/* ========================================= */
+/* RESPONSIVE MEDIA QUERIES                  */
+/* ========================================= */
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr; 
+  }
+  .game-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  .player-profile {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+  .player-info h2 {
+    justify-content: center;
+  }
+  .xp-container {
+    justify-content: center;
+  }
+  .main-nav {
+    width: 100%;
+    margin: 15px 0;
+  }
+  .header-actions {
+    justify-content: center;
+    width: 100%;
+  }
+  .app-view {
+    padding: 15px;
+  }
+}
